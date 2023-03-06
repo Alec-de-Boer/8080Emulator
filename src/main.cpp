@@ -16,7 +16,7 @@ int main(int argv, char** args)
     CPU cpu;
     emulator.initSystems();
     auto firstRun = true;
-    auto frameready = false;
+    auto frameready = true;
     
     while (emulator._emulatorState != EmulatorState::EXIT)
     {
@@ -27,10 +27,10 @@ int main(int argv, char** args)
             emulator.processInput(memory);
             if (frameready)
             {
-                frameready = false;
+                frameready = true;
                 emulator.DrawImage(framebuffer);
             }
-            //cycles = cpu.Start(memory, framebuffer, firstRun);
+            cpu.Start(memory, framebuffer, firstRun);
             firstRun = false;
             //n = n - cycles;
         //}
